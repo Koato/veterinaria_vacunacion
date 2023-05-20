@@ -20,7 +20,7 @@ import com.bonnie.veterinaria.virtualvet.exception.VirtualVetNotFoundException;
 import com.bonnie.veterinaria.virtualvet.services.iVirtualVetServices;
 
 @RestController
-@RequestMapping(value = "/api/veterinaria/v1")
+@RequestMapping(value = "/api/v1/veterinaria")
 public class VirtualVetController {
 
 	@Autowired
