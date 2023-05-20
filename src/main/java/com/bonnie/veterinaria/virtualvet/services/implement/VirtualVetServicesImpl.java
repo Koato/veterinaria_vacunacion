@@ -16,7 +16,7 @@ import com.bonnie.veterinaria.virtualvet.repository.VirtualVetRepository;
 import com.bonnie.veterinaria.virtualvet.services.iVirtualVetServices;
 import com.mongodb.client.result.UpdateResult;
 
-@Service("virtualVetServices")
+@Service
 public class VirtualVetServicesImpl implements iVirtualVetServices {
 
 	@Autowired
