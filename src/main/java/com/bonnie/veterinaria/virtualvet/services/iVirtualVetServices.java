@@ -2,15 +2,15 @@ package com.bonnie.veterinaria.virtualvet.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.bonnie.veterinaria.virtualvet.dao.VirtualVet;
+import com.bonnie.veterinaria.virtualvet.dao.RegistroVacuna;
 
 public interface iVirtualVetServices {
 
-	Page<VirtualVet> findAll(Pageable pageable);
+	Page<RegistroVacuna> findAll(Pageable pageable);
 
-	VirtualVet findById(String id);
+	RegistroVacuna findById(String id);
 
-	VirtualVet guardarVirtualVet(VirtualVet virtualVet);
+	RegistroVacuna guardarVirtualVet(RegistroVacuna virtualVet);
 
-	VirtualVet actualizarVirtualVet(VirtualVet virtualVet);
+	RegistroVacuna actualizarVirtualVet(RegistroVacuna virtualVet);
 }

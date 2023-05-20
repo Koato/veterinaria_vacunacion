@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.bonnie.veterinaria.virtualvet.dao.VirtualVet;
+import com.bonnie.veterinaria.virtualvet.dao.RegistroVacuna;
 import com.bonnie.veterinaria.virtualvet.exception.VirtualVetNotFoundException;
 import com.bonnie.veterinaria.virtualvet.services.iVirtualVetServices;
 
 @RestController
-@RequestMapping(value = "/veterinaria")
+@RequestMapping(value = "/api/veterinaria/v1")
 public class VirtualVetController {
 
 	@Autowired
@@ -50,10 +50,10 @@ public class VirtualVetController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> insertarRegistro(@RequestBody(required = true) VirtualVet virtualVet) {
+	public ResponseEntity<Object> insertarRegistro(@RequestBody(required = true) RegistroVacuna virtualVet) {
 		Map<String, Object> response = new HashMap<>();
 		try {
-			VirtualVet viajesNuevo = services.guardarVirtualVet(virtualVet);
+			RegistroVacuna viajesNuevo = services.guardarVirtualVet(virtualVet);
 			response.put(RESPONSE_MENSAJE, "Ha sido insertado con éxito");
 			response.put("registro", viajesNuevo);
 			return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -66,7 +66,7 @@ public class VirtualVetController {
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Object> actualizarRegistro(@PathVariable(required = true) String id,
-			@RequestBody(required = true) VirtualVet virtualVet) {
+			@RequestBody(required = true) RegistroVacuna virtualVet) {
 		Map<String, Object> response = new HashMap<>();
 		try {
 			virtualVet.setId(id);

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.bonnie.veterinaria.virtualvet.dao.VirtualVet;
+import com.bonnie.veterinaria.virtualvet.dao.RegistroVacuna;
 import com.bonnie.veterinaria.virtualvet.exception.VirtualVetNotFoundException;
 import com.bonnie.veterinaria.virtualvet.repository.VirtualVetRepository;
 import com.bonnie.veterinaria.virtualvet.services.iVirtualVetServices;
@@ -27,13 +27,13 @@ public class VirtualVetServicesImpl implements iVirtualVetServices {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<VirtualVet> findAll(Pageable pageable) {
+	public Page<RegistroVacuna> findAll(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@Override
-	public VirtualVet findById(String id) {
-		Optional<VirtualVet> viajes = obtenerVirtualVet(id);
+	public RegistroVacuna findById(String id) {
+		Optional<RegistroVacuna> viajes = obtenerVirtualVet(id);
 		if (viajes.isPresent()) {
 			return viajes.get();
 		} else {
@@ -43,14 +43,14 @@ public class VirtualVetServicesImpl implements iVirtualVetServices {
 
 	@Override
 	@Transactional
-	public VirtualVet guardarVirtualVet(VirtualVet virtualVet) {
+	public RegistroVacuna guardarVirtualVet(RegistroVacuna virtualVet) {
 		repository.save(virtualVet);
 		return obtenerVirtualVet(virtualVet.getId()).get();
 	}
 
 	@Override
 	@Transactional
-	public VirtualVet actualizarVirtualVet(VirtualVet virtualVet) {
+	public RegistroVacuna actualizarVirtualVet(RegistroVacuna virtualVet) {
 		Query query = new Query(Criteria.where("_id").is(virtualVet.getId()));
 		Update update = new Update();
 //		update.set("start", viaje.getStart());
@@ -66,16 +66,16 @@ public class VirtualVetServicesImpl implements iVirtualVetServices {
 //		update.set("price", viaje.getPrice());
 //		update.set("driver_location", viaje.getDriver_location());
 //		update.set("check_code", viaje.getCheck_code());
-		UpdateResult result = mongoOperations.updateFirst(query, update, VirtualVet.class);
+		UpdateResult result = mongoOperations.updateFirst(query, update, RegistroVacuna.class);
 		if (result.getMatchedCount() == 0) {
 			throw new VirtualVetNotFoundException(virtualVet.getId());
 		}
 		return obtenerVirtualVet(virtualVet.getId()).get();
 	}
 
-	private Optional<VirtualVet> obtenerVirtualVet(String id) {
+	private Optional<RegistroVacuna> obtenerVirtualVet(String id) {
 		Query query = new Query(Criteria.where("_id").is(id));
-		return Optional.ofNullable(mongoOperations.findOne(query, VirtualVet.class));
+		return Optional.ofNullable(mongoOperations.findOne(query, RegistroVacuna.class));
 	}
 
 }
