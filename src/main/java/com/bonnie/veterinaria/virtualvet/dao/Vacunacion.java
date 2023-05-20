@@ -1,13 +1,18 @@
 package com.bonnie.veterinaria.virtualvet.dao;
 
 import java.time.LocalDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
+@Document(collection = "vacunacion")
 public class Vacunacion {
 	
+	@Id
+	private String id;
 	private LocalDate fechaProgramada;
 	private LocalDate fechaAplicacion;
 	private String firma;
@@ -24,6 +29,6 @@ public class Vacunacion {
 	private Boolean rinotraqueitis;
 	private Boolean panleucopenia;
 	private Boolean calicivirus;
-	private Frasco etiquetaFrasco;
+	private FrascoVacuna etiquetaFrasco;
 
 }

@@ -8,20 +8,16 @@ import lombok.Data;
 
 @Data
 @Builder
-@Document(collection = "identificacion")
-public class Identificacion {
+@Document(collection = "renian")
+public class Renian {
 
 	@Id
 	private String id;
-	private String nombre;
 	private String urlFoto;
-	private String especie;
+	private Long microchip;
+	private String nombre;
 	private LocalDate fechaNacimiento;
-	private String raza;
-	private String color;
 	private String genero;
-	private Renian renian;
-	private Long hc;
+	private String raza;
 	private Propietario propietario;
-
 }
